@@ -132,9 +132,6 @@ npm install
 # Create .env file
 cp .env.example .env
 
-# Edit .env with your database credentials
-# DATABASE_URL=postgresql://username:password@host:port/database
-# JWT_SECRET=your_secret_key
 
 # Run database migration
 npm run migrate
