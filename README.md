@@ -13,8 +13,9 @@
 Task Track is a complete web application that enables users to manage their daily tasks from a single platform. Built with Node.js, Express, PostgreSQL, and React.
 
 ### Live Demo
-- **Backend API**: `https://your-backend.onrender.com`
-- **Frontend**: `https://your-frontend.onrender.com`
+- **Backend API**: `https://tasktrack-backend-j0pl.onrender.com`
+- **GitHub Repository**: `https://github.com/rajinakhan80585-collab/Task_Track`
+- **Frontend**: Coming soon in Sprint 2
 
 ---
 

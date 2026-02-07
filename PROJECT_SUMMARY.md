@@ -139,8 +139,8 @@ frontend/
 ## 🎯 YOUR SPRINT 1 DELIVERABLES
 
 ### What You Need to Submit
-1. **GitHub Repository URL**
-2. **Live Backend URL** (after Render deployment)
+1. **GitHub Repository URL**: `https://github.com/rajinakhan80585-collab/Task_Track`
+2. **Live Backend URL**: `https://tasktrack-backend-j0pl.onrender.com`
 3. **Test Credentials**
 4. **Documentation** (already in repo)
 

@@ -1,5 +1,10 @@
 # Task Track - Backend API
 
+## Project Links
+- **Live API**: `https://tasktrack-backend-j0pl.onrender.com`
+- **GitHub Repository**: `https://github.com/rajinakhan80585-collab/Task_Track`
+- **Postman Testing Guide**: See `POSTMAN_TESTING_GUIDE.md` in root folder
+
 ## Quick Start Guide
 
 ### 1. Install Dependencies

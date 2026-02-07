@@ -2,10 +2,14 @@
 
 This guide will walk you through deploying your Task Track application to Render with PostgreSQL database.
 
+## Project Links
+- **Live Backend API**: `https://tasktrack-backend-j0pl.onrender.com`
+- **GitHub Repository**: `https://github.com/rajinakhan80585-collab/Task_Track`
+
 ## Prerequisites
 - GitHub account
 - Render account (sign up at https://render.com)
-- Your code pushed to a GitHub repository
+- Your code pushed to GitHub: `https://github.com/rajinakhan80585-collab/Task_Track`
 
 ---
 
@@ -53,7 +57,7 @@ After creation, you'll see the database dashboard. You need to copy the **INTERN
 3. Connect your GitHub repository:
    - Click **"Connect GitHub"**
    - Authorize Render to access your repositories
-   - Select your `task-track` repository
+   - Select your repository: `rajinakhan80585-collab/Task_Track`
 
 ### 2.2 Configure Web Service
 Fill in the following settings:
@@ -88,12 +92,12 @@ Click **"Add Environment Variable"** for each:
 1. Click **"Create Web Service"**
 2. Wait for deployment (5-10 minutes)
 3. You'll see build logs - watch for success messages
-4. Once deployed, you'll get a URL like: `https://tasktrack-backend.onrender.com`
+4. Once deployed, your URL: `https://tasktrack-backend-j0pl.onrender.com`
 
 ### 2.5 Test Your Backend
 Open your backend URL in browser:
 ```
-https://tasktrack-backend.onrender.com
+https://tasktrack-backend-j0pl.onrender.com
 ```
 
 You should see:
@@ -132,7 +136,7 @@ You should see:
 Use Postman, Thunder Client, or curl:
 
 ```bash
-curl -X POST https://tasktrack-backend.onrender.com/api/auth/register \
+curl -X POST https://tasktrack-backend-j0pl.onrender.com/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Rajina",
@@ -157,7 +161,7 @@ Expected response:
 
 ### Test Login Endpoint
 ```bash
-curl -X POST https://tasktrack-backend.onrender.com/api/auth/login \
+curl -X POST https://tasktrack-backend-j0pl.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "rajina@test.com",
@@ -172,7 +176,7 @@ curl -X POST https://tasktrack-backend.onrender.com/api/auth/login \
 ### 5.1 Update Frontend API URL
 In your React frontend, create a `.env` file:
 ```env
-REACT_APP_API_URL=https://tasktrack-backend.onrender.com
+REACT_APP_API_URL=https://tasktrack-backend-j0pl.onrender.com
 ```
 
 Update your API calls to use:
@@ -190,7 +194,7 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
    - **Publish Directory**: `build`
 4. Add environment variable:
    - Key: `REACT_APP_API_URL`
-   - Value: `https://tasktrack-backend.onrender.com`
+   - Value: `https://tasktrack-backend-j0pl.onrender.com`
 5. Click **"Create Static Site"**
 
 ### 5.3 Update Backend CORS
@@ -206,7 +210,7 @@ Go back to your backend web service:
 
 ### Backend Health Check
 ```
-https://tasktrack-backend.onrender.com/
+https://tasktrack-backend-j0pl.onrender.com/
 ```
 Should show: "Task Track API is running"
 
@@ -230,7 +234,7 @@ Should show: "Task Track API is running"
 ### Keeping Free Service Awake (Optional)
 Use a service like **UptimeRobot** or **Cron-Job.org** to ping your backend every 14 minutes:
 ```
-https://tasktrack-backend.onrender.com/
+https://tasktrack-backend-j0pl.onrender.com/
 ```
 
 ### Database Backup (Important!)
@@ -308,9 +312,9 @@ Render free databases expire after 90 days. Before expiration:
 
 For your Sprint 1 submission, provide:
 
-1. **GitHub Repository URL**
-2. **Live Backend URL**: `https://tasktrack-backend.onrender.com`
-3. **Live Frontend URL**: `https://tasktrack-frontend.onrender.com` (if completed)
+1. **GitHub Repository URL**: `https://github.com/rajinakhan80585-collab/Task_Track`
+2. **Live Backend URL**: `https://tasktrack-backend-j0pl.onrender.com`
+3. **Live Frontend URL**: Coming soon in Sprint 2
 4. **Test Credentials**:
    - Email: rajina@test.com
    - Password: password123
@@ -332,7 +336,7 @@ For your Sprint 1 submission, provide:
 
 ## ✅ FINAL NOTES
 
-- Your backend URL: `https://[your-service-name].onrender.com`
+- Your backend URL: `https://tasktrack-backend-j0pl.onrender.com`
 - Test all endpoints before demo
 - Keep database URL secret (never commit to Git)
 - Make regular commits showing development progress

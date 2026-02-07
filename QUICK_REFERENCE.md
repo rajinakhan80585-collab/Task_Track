@@ -78,7 +78,7 @@ curl http://localhost:5000
 ```bash
 GET http://localhost:5000/
 # OR
-GET https://your-backend.onrender.com/
+GET https://tasktrack-backend-j0pl.onrender.com/
 
 Expected: 
 {
@@ -281,7 +281,7 @@ npm run migrate
 http://localhost:5000
 
 # Production
-https://your-backend.onrender.com
+https://tasktrack-backend-j0pl.onrender.com
 ```
 
 ### View Logs
@@ -341,8 +341,8 @@ Date: February 7, 2026
 
 Repository & Deployment
 -----------------------
-GitHub: https://github.com/YOUR-USERNAME/task-track
-Live Backend: https://tasktrack-backend.onrender.com
+GitHub: https://github.com/rajinakhan80585-collab/Task_Track
+Live Backend: https://tasktrack-backend-j0pl.onrender.com
 
 Test Credentials
 ----------------
