@@ -8,6 +8,9 @@
     "dev": "nodemon server.js",
     "migrate": "node db/migrate.js"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "keywords": ["task", "management", "api"],
   "author": "Rajina",
   "license": "ISC",

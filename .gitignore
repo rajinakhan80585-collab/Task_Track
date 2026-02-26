@@ -60,8 +60,7 @@ temp/
 tmp/
 .cache/
 
-# Package manager
-package-lock.json
+# Package manager lock files (yarn/pnpm only — package-lock.json is committed for reproducible builds)
 yarn.lock
 pnpm-lock.yaml
 
