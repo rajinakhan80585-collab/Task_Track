@@ -107,6 +107,7 @@ CREATE TABLE tasks (
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
 | GET | `/api/categories` | Get all categories | Yes |
+| GET | `/api/categories/:id` | Get single category | Yes |
 | POST | `/api/categories` | Create category | Yes |
 | PUT | `/api/categories/:id` | Update category | Yes |
 | DELETE | `/api/categories/:id` | Delete category | Yes |
@@ -272,7 +273,7 @@ task-track/
 - ✅ User authentication with JWT
 - ✅ Password hashing with bcryptjs
 - ✅ CRUD operations for tasks
-- ✅ CRUD operations for categories
+- ✅ CRUD operations for categories (GET all, GET by ID, POST, PUT, DELETE)
 - ✅ Protected routes with middleware
 - ✅ Input validation
 - ✅ Error handling

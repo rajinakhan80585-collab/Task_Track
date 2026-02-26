@@ -54,6 +54,7 @@ The API will be available at `http://localhost:5000`
 
 ### Category Routes (All Protected)
 - `GET /api/categories` - Get all categories
+- `GET /api/categories/:id` - Get single category
 - `POST /api/categories` - Create category
 - `PUT /api/categories/:id` - Update category
 - `DELETE /api/categories/:id` - Delete category

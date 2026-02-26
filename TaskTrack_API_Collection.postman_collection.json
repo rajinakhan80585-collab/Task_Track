@@ -1,0 +1,553 @@
+{
+  "info": {
+    "name": "Task Track API",
+    "description": "Complete API collection for the Task Track backend. Includes authentication (register/login), category CRUD, and task CRUD endpoints.\n\nBase URL: https://tasktrack-backend-j0pl.onrender.com\n\nUsage:\n1. Run 'Register User' to create an account.\n2. Copy the token from the response.\n3. Set the collection-level Authorization to Bearer Token and paste the token.\n4. Test all other endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{auth_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://tasktrack-backend-j0pl.onrender.com/api",
+      "type": "string"
+    },
+    {
+      "key": "auth_token",
+      "value": "",
+      "type": "string",
+      "description": "Paste your JWT token here after registering or logging in"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://tasktrack-backend-j0pl.onrender.com",
+          "protocol": "https",
+          "host": ["tasktrack-backend-j0pl", "onrender", "com"]
+        },
+        "description": "Verify the API server is running. Returns 200 OK with a status message."
+      },
+      "response": [
+        {
+          "name": "API Running",
+          "status": "OK",
+          "code": 200,
+          "header": [{ "key": "Content-Type", "value": "application/json" }],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Task Track API is running\",\n  \"timestamp\": \"2026-02-07T10:00:00.000Z\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"testuser@example.com\",\n  \"password\": \"password123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Create a new user account. Returns a JWT token on success (201 Created). Passwords are hashed with bcrypt before storage — never stored as plain text."
+          },
+          "response": [
+            {
+              "name": "201 Created - User Registered",
+              "status": "Created",
+              "code": 201,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"message\": \"User registered successfully\",\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"user\": {\n    \"id\": 1,\n    \"name\": \"Test User\",\n    \"email\": \"testuser@example.com\",\n    \"createdAt\": \"2026-02-07T10:30:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "400 Bad Request - User Already Exists",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"User already exists with this email\"\n}"
+            },
+            {
+              "name": "400 Bad Request - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"errors\": [\n    {\n      \"msg\": \"Password must be at least 6 characters\",\n      \"param\": \"password\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"testuser@example.com\",\n  \"password\": \"password123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Authenticate an existing user. Returns a JWT token (200 OK). Copy the token and set it as the collection-level Bearer Token."
+          },
+          "response": [
+            {
+              "name": "200 OK - Login Successful",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Login successful\",\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\",\n  \"user\": {\n    \"id\": 1,\n    \"name\": \"Test User\",\n    \"email\": \"testuser@example.com\"\n  }\n}"
+            },
+            {
+              "name": "401 Unauthorized - Invalid Credentials",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid credentials\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/auth/profile",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "profile"]
+            },
+            "description": "Get the currently logged-in user's profile. Requires a valid Bearer Token. Returns 200 OK."
+          },
+          "response": [
+            {
+              "name": "200 OK - Profile Retrieved",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"user\": {\n    \"id\": 1,\n    \"name\": \"Test User\",\n    \"email\": \"testuser@example.com\",\n    \"createdAt\": \"2026-02-07T10:30:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "401 Unauthorized - No Token",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Work\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": ["{{base_url}}"],
+              "path": ["categories"]
+            },
+            "description": "Create a new category for the logged-in user. Returns 201 Created."
+          },
+          "response": [
+            {
+              "name": "201 Created - Category Created",
+              "status": "Created",
+              "code": 201,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Category created successfully\",\n  \"category\": {\n    \"category_id\": 1,\n    \"user_id\": 1,\n    \"name\": \"Work\",\n    \"created_at\": \"2026-02-07T10:30:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "400 Bad Request - Duplicate Category",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Category with this name already exists\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": ["{{base_url}}"],
+              "path": ["categories"]
+            },
+            "description": "Retrieve all categories belonging to the logged-in user. Returns 200 OK."
+          },
+          "response": [
+            {
+              "name": "200 OK - Categories Retrieved",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"count\": 2,\n  \"categories\": [\n    {\n      \"category_id\": 1,\n      \"user_id\": 1,\n      \"name\": \"Personal\",\n      \"created_at\": \"2026-02-07T10:30:00.000Z\"\n    },\n    {\n      \"category_id\": 2,\n      \"user_id\": 1,\n      \"name\": \"Work\",\n      \"created_at\": \"2026-02-07T10:35:00.000Z\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Single Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/categories/1",
+              "host": ["{{base_url}}"],
+              "path": ["categories", "1"]
+            },
+            "description": "Retrieve a single category by its ID. Only returns the category if it belongs to the logged-in user. Returns 200 OK or 404 Not Found."
+          },
+          "response": [
+            {
+              "name": "200 OK - Category Found",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"category\": {\n    \"category_id\": 1,\n    \"user_id\": 1,\n    \"name\": \"Work\",\n    \"created_at\": \"2026-02-07T10:30:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Category not found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Work Projects\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/categories/1",
+              "host": ["{{base_url}}"],
+              "path": ["categories", "1"]
+            },
+            "description": "Update the name of an existing category by its ID. Returns 200 OK or 404 Not Found."
+          },
+          "response": [
+            {
+              "name": "200 OK - Category Updated",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Category updated successfully\",\n  \"category\": {\n    \"category_id\": 1,\n    \"user_id\": 1,\n    \"name\": \"Work Projects\",\n    \"created_at\": \"2026-02-07T10:30:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Category not found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/categories/1",
+              "host": ["{{base_url}}"],
+              "path": ["categories", "1"]
+            },
+            "description": "Delete a category by its ID. Tasks linked to this category will have their category_id set to NULL (ON DELETE SET NULL). Returns 200 OK or 404 Not Found."
+          },
+          "response": [
+            {
+              "name": "200 OK - Category Deleted",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Category deleted successfully\"\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Category not found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Complete project documentation\",\n  \"description\": \"Write comprehensive API documentation\",\n  \"category_id\": 1,\n  \"status\": \"Pending\",\n  \"due_date\": \"2026-03-15\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/tasks",
+              "host": ["{{base_url}}"],
+              "path": ["tasks"]
+            },
+            "description": "Create a new task for the logged-in user. Valid status values: 'Pending', 'In Progress', 'Completed'. category_id and due_date are optional. Returns 201 Created."
+          },
+          "response": [
+            {
+              "name": "201 Created - Task Created",
+              "status": "Created",
+              "code": 201,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Task created successfully\",\n  \"task\": {\n    \"task_id\": 1,\n    \"user_id\": 1,\n    \"category_id\": 1,\n    \"title\": \"Complete project documentation\",\n    \"description\": \"Write comprehensive API documentation\",\n    \"status\": \"Pending\",\n    \"due_date\": \"2026-03-15T00:00:00.000Z\",\n    \"created_at\": \"2026-02-07T10:30:00.000Z\",\n    \"updated_at\": \"2026-02-07T10:30:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "400 Bad Request - Validation Error",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"errors\": [\n    {\n      \"msg\": \"Title is required\",\n      \"param\": \"title\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get All Tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tasks",
+              "host": ["{{base_url}}"],
+              "path": ["tasks"]
+            },
+            "description": "Retrieve all tasks for the logged-in user. Each task includes its category name via a JOIN. Results ordered by creation date (newest first). Returns 200 OK."
+          },
+          "response": [
+            {
+              "name": "200 OK - Tasks Retrieved",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"count\": 2,\n  \"tasks\": [\n    {\n      \"task_id\": 2,\n      \"user_id\": 1,\n      \"category_id\": 1,\n      \"title\": \"Review pull requests\",\n      \"description\": \"Review team code submissions\",\n      \"status\": \"In Progress\",\n      \"due_date\": \"2026-02-10T00:00:00.000Z\",\n      \"created_at\": \"2026-02-07T11:00:00.000Z\",\n      \"updated_at\": \"2026-02-07T11:00:00.000Z\",\n      \"category_name\": \"Work\"\n    },\n    {\n      \"task_id\": 1,\n      \"user_id\": 1,\n      \"category_id\": 1,\n      \"title\": \"Complete project documentation\",\n      \"description\": \"Write comprehensive API documentation\",\n      \"status\": \"Pending\",\n      \"due_date\": \"2026-03-15T00:00:00.000Z\",\n      \"created_at\": \"2026-02-07T10:30:00.000Z\",\n      \"updated_at\": \"2026-02-07T10:30:00.000Z\",\n      \"category_name\": \"Work\"\n    }\n  ]\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Single Task",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tasks/1",
+              "host": ["{{base_url}}"],
+              "path": ["tasks", "1"]
+            },
+            "description": "Retrieve a single task by its ID. Only returns the task if it belongs to the logged-in user. Returns 200 OK or 404 Not Found."
+          },
+          "response": [
+            {
+              "name": "200 OK - Task Found",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"task\": {\n    \"task_id\": 1,\n    \"user_id\": 1,\n    \"category_id\": 1,\n    \"title\": \"Complete project documentation\",\n    \"description\": \"Write comprehensive API documentation\",\n    \"status\": \"Pending\",\n    \"due_date\": \"2026-03-15T00:00:00.000Z\",\n    \"created_at\": \"2026-02-07T10:30:00.000Z\",\n    \"updated_at\": \"2026-02-07T10:30:00.000Z\",\n    \"category_name\": \"Work\"\n  }\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Task not found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update Task",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Complete API documentation\",\n  \"description\": \"Write and review comprehensive API documentation\",\n  \"status\": \"In Progress\",\n  \"category_id\": 1,\n  \"due_date\": \"2026-03-20\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/tasks/1",
+              "host": ["{{base_url}}"],
+              "path": ["tasks", "1"]
+            },
+            "description": "Update an existing task by its ID. All fields are optional — only provided fields will be updated (COALESCE). Returns 200 OK or 404 Not Found."
+          },
+          "response": [
+            {
+              "name": "200 OK - Task Updated",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Task updated successfully\",\n  \"task\": {\n    \"task_id\": 1,\n    \"user_id\": 1,\n    \"category_id\": 1,\n    \"title\": \"Complete API documentation\",\n    \"description\": \"Write and review comprehensive API documentation\",\n    \"status\": \"In Progress\",\n    \"due_date\": \"2026-03-20T00:00:00.000Z\",\n    \"created_at\": \"2026-02-07T10:30:00.000Z\",\n    \"updated_at\": \"2026-02-07T12:00:00.000Z\"\n  }\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Task not found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Task",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tasks/1",
+              "host": ["{{base_url}}"],
+              "path": ["tasks", "1"]
+            },
+            "description": "Delete a task by its ID. Only deletes if the task belongs to the logged-in user. Returns 200 OK or 404 Not Found."
+          },
+          "response": [
+            {
+              "name": "200 OK - Task Deleted",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Task deleted successfully\"\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Task not found\"\n}"
+            },
+            {
+              "name": "401 Unauthorized",
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"success\": false,\n  \"message\": \"No token, authorization denied\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
