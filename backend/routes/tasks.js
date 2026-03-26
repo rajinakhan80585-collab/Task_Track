@@ -18,9 +18,6 @@ function validateId(id, res) {
   return parsed;
 }
 
-// @route   GET /api/tasks
-// @desc    Get all tasks for the logged-in user (includes category name via JOIN)
-// @access  Private
 router.get('/', async (req, res) => {
   try {
     const result = await pool.query(
@@ -39,14 +36,10 @@ router.get('/', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Get tasks error:', error);
     res.status(500).json({ success: false, message: 'Server error fetching tasks' });
   }
 });
 
-// @route   GET /api/tasks/:id
-// @desc    Get a single task by ID (must belong to the logged-in user)
-// @access  Private
 router.get('/:id', async (req, res) => {
   const id = validateId(req.params.id, res);
   if (!id) return;
@@ -67,14 +60,11 @@ router.get('/:id', async (req, res) => {
     res.status(200).json({ success: true, task: result.rows[0] });
 
   } catch (error) {
-    console.error('Get task error:', error);
+
     res.status(500).json({ success: false, message: 'Server error fetching task' });
   }
 });
 
-// @route   POST /api/tasks
-// @desc    Create a new task for the logged-in user
-// @access  Private
 router.post('/', [
   body('title').trim().notEmpty().withMessage('Title is required'),
   body('status')
@@ -112,14 +102,11 @@ router.post('/', [
     });
 
   } catch (error) {
-    console.error('Create task error:', error);
+
     res.status(500).json({ success: false, message: 'Server error creating task' });
   }
 });
 
-// @route   PUT /api/tasks/:id
-// @desc    Update an existing task (only fields provided will change — uses COALESCE)
-// @access  Private
 router.put('/:id', [
   body('status')
     .optional()
@@ -174,9 +161,6 @@ router.put('/:id', [
   }
 });
 
-// @route   DELETE /api/tasks/:id
-// @desc    Delete a task (must belong to the logged-in user)
-// @access  Private
 router.delete('/:id', async (req, res) => {
   const id = validateId(req.params.id, res);
   if (!id) return;
@@ -194,7 +178,7 @@ router.delete('/:id', async (req, res) => {
     res.status(200).json({ success: true, message: 'Task deleted successfully' });
 
   } catch (error) {
-    console.error('Delete task error:', error);
+
     res.status(500).json({ success: false, message: 'Server error deleting task' });
   }
 });

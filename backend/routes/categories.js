@@ -18,9 +18,6 @@ function validateId(id, res) {
   return parsed;
 }
 
-// @route   GET /api/categories
-// @desc    Get all categories for the logged-in user
-// @access  Private
 router.get('/', async (req, res) => {
   try {
     const result = await pool.query(
@@ -35,14 +32,10 @@ router.get('/', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Get categories error:', error);
     res.status(500).json({ success: false, message: 'Server error fetching categories' });
   }
 });
 
-// @route   POST /api/categories
-// @desc    Create a new category for the logged-in user (duplicate names per user are blocked)
-// @access  Private
 router.post('/', [
   body('name').trim().notEmpty().withMessage('Category name is required')
 ], async (req, res) => {
@@ -79,14 +72,10 @@ router.post('/', [
     });
 
   } catch (error) {
-    console.error('Create category error:', error);
     res.status(500).json({ success: false, message: 'Server error creating category' });
   }
 });
 
-// @route   GET /api/categories/:id
-// @desc    Get a single category by ID (must belong to the logged-in user)
-// @access  Private
 router.get('/:id', async (req, res) => {
   const id = validateId(req.params.id, res);
   if (!id) return;
@@ -104,14 +93,10 @@ router.get('/:id', async (req, res) => {
     res.status(200).json({ success: true, category: result.rows[0] });
 
   } catch (error) {
-    console.error('Get category error:', error);
     res.status(500).json({ success: false, message: 'Server error fetching category' });
   }
 });
 
-// @route   PUT /api/categories/:id
-// @desc    Update a category name (must belong to the logged-in user)
-// @access  Private
 router.put('/:id', [
   body('name').trim().notEmpty().withMessage('Category name is required')
 ], async (req, res) => {
@@ -148,14 +133,10 @@ router.put('/:id', [
     });
 
   } catch (error) {
-    console.error('Update category error:', error);
     res.status(500).json({ success: false, message: 'Server error updating category' });
   }
 });
 
-// @route   DELETE /api/categories/:id
-// @desc    Delete a category (tasks linked to it will have category_id set to NULL)
-// @access  Private
 router.delete('/:id', async (req, res) => {
   const id = validateId(req.params.id, res);
   if (!id) return;
@@ -173,7 +154,6 @@ router.delete('/:id', async (req, res) => {
     res.status(200).json({ success: true, message: 'Category deleted successfully' });
 
   } catch (error) {
-    console.error('Delete category error:', error);
     res.status(500).json({ success: false, message: 'Server error deleting category' });
   }
 });

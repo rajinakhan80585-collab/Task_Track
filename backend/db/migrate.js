@@ -12,6 +12,7 @@ CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
+  mobile VARCHAR(20) NOT NULL,
   password_hash VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -44,15 +45,6 @@ CREATE TABLE tasks (
 CREATE INDEX idx_tasks_user_id ON tasks(user_id);
 CREATE INDEX idx_tasks_status ON tasks(status);
 CREATE INDEX idx_categories_user_id ON categories(user_id);
-
--- Insert default categories for testing
-INSERT INTO users (name, email, password_hash) 
-VALUES ('Test User', 'test@example.com', '$2a$10$XQKvvZFMFj1V5h5Z5Z5Z5u5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5Z5');
-
-INSERT INTO categories (user_id, name) VALUES 
-(1, 'Work'),
-(1, 'Personal'),
-(1, 'Shopping');
 `;
 
 // Migration function
