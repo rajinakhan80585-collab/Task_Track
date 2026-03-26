@@ -1,0 +1,77 @@
+.category-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.category-selector select {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: inherit;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.category-selector select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.new-category-form {
+  display: flex;
+  gap: 8px;
+}
+
+.new-category-form input {
+  flex: 1;
+  padding: 8px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.new-category-form input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.new-category-form button {
+  padding: 8px 12px;
+  background: #5B8DEE;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.new-category-form button:hover {
+  background: #4A7FD9;
+  box-shadow: 0 2px 4px rgba(91, 141, 238, 0.2);
+}
+
+.new-category-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.category-selector p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.category-selector .error-message {
+  background: #fee;
+  color: #c33;
+  padding: 8px;
+  border-radius: 4px;
+  border-left: 3px solid #c33;
+  font-size: 12px;
+}
