@@ -1,120 +1,179 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# 🎯 Task Track - Full Stack Task Management Application
+# Task Track - Full Stack Task Management Application
 
 **Student**: Rajina  
-**Student Number**: 9030748  
+**Student ID**: 9030748  
 **Course**: PROG2500 - Open-Source Full Stack Development  
-**Professor**: Johan Prinz  
 **Semester**: Winter 2026
 
 ---
 
-## 📋 Project Overview
+## 📱 Overview
 
-Task Track is a complete web application that enables users to manage their daily tasks from a single platform. Built with Node.js, Express, PostgreSQL, and React.
+Task Track is a modern, full-stack task management application designed to help users organize, track, and manage their daily tasks efficiently. With an intuitive interface and powerful backend, users can create tasks, organize them by categories, set priorities, and track completion status.
 
-### Live Demo
-- **Backend API**: `https://tasktrack-backend-j0pl.onrender.com`
-- **GitHub Repository**: `https://github.com/rajinakhan80585-collab/Task_Track`
-- **Frontend**: Coming soon in Sprint 2
+### 🌐 Live Demo
+- **Frontend**: [https://design-task-track.onrender.com](https://design-task-track.onrender.com)
+- **Backend API**: [https://task-track-i2nd.onrender.com](https://task-track-i2nd.onrender.com)
+
+### 📝 Demo Credentials
+```
+Email: rajina@example.com
+Password: Abc@123
+Mobile: +1-905-123-4567
+```
 
 ---
 
-## 🏗️ Technology Stack
+## ✨ Key Features
+
+✅ **User Authentication** - Secure registration & login with JWT tokens  
+✅ **Task Management** - Create, edit, update, and delete tasks  
+✅ **Categories** - Organize tasks into custom categories  
+✅ **Status Tracking** - Set task status (Pending, In Progress, Completed)  
+✅ **Due Dates** - Track task deadlines  
+✅ **Mobile Number Integration** - Enhanced user profile data  
+✅ **Database Seeding** - Pre-populated demo data for testing  
+✅ **Responsive Design** - Works seamlessly on desktop and mobile  
+✅ **Clean, Modern UI** - Professional light-themed interface  
+
+---
+
+## 🛠️ Technology Stack
 
 ### Backend
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: PostgreSQL (Render)
-- **Authentication**: JWT (JSON Web Tokens)
-- **Password Hashing**: bcryptjs
-- **Validation**: express-validator
+| Technology | Purpose |
+|------------|---------|
+| **Node.js** | JavaScript runtime |
+| **Express.js** | REST API framework |
+| **PostgreSQL** | Relational database |
+| **JWT** | Secure authentication |
+| **bcryptjs** | Password hashing |
+| **express-validator** | Input validation |
 
 ### Frontend
-- **Framework**: React
-- **HTTP Client**: Axios
-- **Routing**: React Router DOM
-- **Styling**: CSS3
+| Technology | Purpose |
+|------------|---------|
+| **React 19** | UI framework |
+| **React Router v7** | Client-side routing |
+| **CSS3** | Styling & responsive design |
+| **Fetch API** | HTTP requests |
 
 ### Deployment
-- **Platform**: Render
-- **Database**: Render PostgreSQL
-- **Version Control**: Git/GitHub
+| Service | Purpose |
+|---------|---------|
+| **Render** | Cloud hosting (frontend & backend) |
+| **PostgreSQL** | Cloud database |
 
 ---
 
-## 📊 Database Schema
+## 📂 Project Structure
+
+```
+Task_Track/
+├── src/                          # React frontend
+│   ├── pages/
+│   │   ├── LoginPage.js
+│   │   ├── RegisterPage.js
+│   │   └── DashboardPage.js
+│   ├── components/
+│   │   ├── TaskForm.js
+│   │   ├── TaskList.js
+│   │   ├── TaskCard.js
+│   │   └── CategorySelector.js
+│   ├── services/
+│   │   └── api.js               # API service layer
+│   ├── App.js
+│   └── index.js
+├── backend/
+│   ├── routes/
+│   │   ├── auth.js              # Authentication endpoints
+│   │   ├── tasks.js             # Task CRUD operations
+│   │   └── categories.js        # Category management
+│   ├── middleware/
+│   │   └── auth.js              # JWT verification
+│   ├── db/
+│   │   ├── connection.js        # Database pool
+│   │   ├── migrate.js           # Database schema
+│   │   └── seed.js              # Demo data
+│   └── server.js
+├── package.json                 # Frontend dependencies
+├── .env                         # Development environment
+└── .env.production              # Production environment
+```
+
+---
+
+## 🚀 Getting Started
+
+### Local Development
+
+#### 1. Clone the repository
+```bash
+git clone <repository-url>
+cd Task_Track
+```
+
+#### 2. Install dependencies
+```bash
+# Frontend
+npm install
+
+# Backend
+cd backend
+npm install
+```
+
+#### 3. Setup environment variables
+Create `.env` in backend directory:
+```env
+DATABASE_URL=postgresql://user:password@host/database
+JWT_SECRET=your_secret_key
+JWT_EXPIRE=7d
+PORT=5000
+NODE_ENV=development
+CLIENT_URL=http://localhost:3000
+```
+
+#### 4. Initialize database
+```bash
+cd backend
+npm run migrate    # Create tables
+npm run seed       # Add demo data
+```
+
+#### 5. Start both servers
+```bash
+# From root directory
+npm run dev        # Starts frontend (3000) & backend (5000)
+```
+
+Visit `http://localhost:3000` and login with demo credentials above.
+
+---
+
+## 📊 API Endpoints
+
+### Authentication
+- `POST /api/auth/register` - Create new account
+- `POST /api/auth/login` - Login to account
+- `GET /api/auth/profile` - Get user profile (protected)
+
+### Tasks
+- `GET /api/tasks` - Get all tasks
+- `GET /api/tasks/:id` - Get single task
+- `POST /api/tasks` - Create new task
+- `PUT /api/tasks/:id` - Update task
+- `DELETE /api/tasks/:id` - Delete task
+
+### Categories
+- `GET /api/categories` - Get all categories
+- `POST /api/categories` - Create category
+- `PUT /api/categories/:id` - Update category
+- `DELETE /api/categories/:id` - Delete category
+
+---
+
+## 🗄️ Database Schema
 
 ### Users Table
 ```sql
@@ -122,19 +181,9 @@ CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
+  mobile VARCHAR(20) NOT NULL,
   password_hash VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-### Categories Table
-```sql
-CREATE TABLE categories (
-  category_id SERIAL PRIMARY KEY,
-  user_id INTEGER NOT NULL,
-  name VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 ```
 
@@ -150,342 +199,260 @@ CREATE TABLE tasks (
   due_date DATE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-  FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE SET NULL
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+```
+
+### Categories Table
+```sql
+CREATE TABLE categories (
+  category_id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 ```
 
 ---
 
-## 🚀 API Endpoints
+## 🎨 Design & UI
 
-### Authentication Routes
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| POST | `/api/auth/register` | Register new user | No |
-| POST | `/api/auth/login` | Login user | No |
-| GET | `/api/auth/profile` | Get user profile | Yes |
-
-### Task Routes
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| GET | `/api/tasks` | Get all user tasks | Yes |
-| GET | `/api/tasks/:id` | Get single task | Yes |
-| POST | `/api/tasks` | Create new task | Yes |
-| PUT | `/api/tasks/:id` | Update task | Yes |
-| DELETE | `/api/tasks/:id` | Delete task | Yes |
-
-### Category Routes
-| Method | Endpoint | Description | Auth Required |
-|--------|----------|-------------|---------------|
-| GET | `/api/categories` | Get all categories | Yes |
-| GET | `/api/categories/:id` | Get single category | Yes |
-| POST | `/api/categories` | Create category | Yes |
-| PUT | `/api/categories/:id` | Update category | Yes |
-| DELETE | `/api/categories/:id` | Delete category | Yes |
+- **Color Scheme**: Light blue (#5B8DEE) with clean backgrounds
+- **Responsive**: Mobile-first design using flexbox and CSS Grid
+- **Accessibility**: Semantic HTML, proper form labels, keyboard navigation
 
 ---
 
-## 💻 Local Development Setup
+## 🧪 Testing Demo
 
-### Prerequisites
-- Node.js (v18+)
-- PostgreSQL (local or Render)
-- Git
-- Text editor (VS Code recommended)
+1. Go to [https://design-task-track.onrender.com](https://design-task-track.onrender.com)
+2. Click "Create Account" to register or use demo credentials
+3. Create new tasks and manage them
+4. Organize by category and track status
+5. Update or delete tasks as needed
 
-### Backend Setup
+---
+
+## 📚 Features Implemented
+
+### Sprint 2 Requirements
+- ✅ Full CRUD operations for tasks
+- ✅ User authentication with registration
+- ✅ Mobile field integration in registration
+- ✅ Category management
+- ✅ Professional UI with consistent styling
+- ✅ Database seeding with demo data
+- ✅ API endpoint documentation
+- ✅ Production deployment on Render
+
+---
+
+## 🔐 Security Features
+
+- Password hashing with bcryptjs
+- JWT token-based authentication
+- Protected API routes with middleware
+- Input validation on all endpoints
+- CORS configured for frontend-backend communication
+- SSL enabled for database connections
+
+---
+
+## 📞 Support & Troubleshooting
+
+### Common Issues
+
+**Port Already in Use**
 ```bash
-# Navigate to backend directory
-cd backend
+# Kill process on port 5000
+npx kill-port 5000
+```
 
-# Install dependencies
+**Database Connection Error**
+- Verify DATABASE_URL in .env
+- Ensure PostgreSQL is running
+- Check database credentials
+
+**Frontend not loading**
+- Clear browser cache
+- Ensure backend is running on port 5000
+- Check API_BASE URL in src/services/api.js
+
+---
+
+## 📄 License
+
+This project created for educational purposes as part of PROG2500 course.
+
+---
+
+**Last Updated**: March 2026  
+**Author**: Rajina (9030748)  
+**Course**: PROG2500 - Open-Source Full Stack Development
+
+
+### Installation
+
+```bash
+# Clone and install
+git clone <repo-url>
+cd Task_Track
 npm install
+cd backend && npm install && cd ..
 
-# Create .env file
+# Setup environment files
 cp .env.example .env
+cp backend/.env.example backend/.env
 
-
-# Run database migration
-npm run migrate
-
-# Start development server
-npm run dev
+# Run migrations
+cd backend && npm run migrate
 ```
 
-Backend runs on: `http://localhost:5000`
+### Start Development
 
-### Frontend Setup
 ```bash
-# Navigate to frontend directory
-cd frontend
+# Run both frontend and backend
+npm run dev
 
-# Create React app (first time only)
-npx create-react-app .
-
-# Install dependencies
-npm install axios react-router-dom
-
-# Create .env file
-echo "REACT_APP_API_URL=http://localhost:5000" > .env
-
-# Start development server
-npm start
+# Or separately:
+npm start           # Frontend only
+npm run dev-backend # Backend only
 ```
-
-Frontend runs on: `http://localhost:3000`
 
 ---
 
-## 🌐 Deployment Guide
+## 📊 Database Schema
 
-### See Complete Deployment Instructions
-Refer to `RENDER_DEPLOYMENT_GUIDE.md` for detailed step-by-step deployment instructions.
+### Users Table
+- `user_id` (INT, PRIMARY KEY)
+- `name` (VARCHAR)
+- `email` (VARCHAR, UNIQUE)
+- `mobile` (VARCHAR)
+- `password_hash` (VARCHAR)
+- `created_at` (TIMESTAMP)
 
-### Quick Deployment Checklist
-- [ ] Push code to GitHub
-- [ ] Create PostgreSQL database on Render
-- [ ] Deploy backend web service
-- [ ] Add environment variables
-- [ ] Run database migration
-- [ ] Deploy frontend static site
-- [ ] Update CORS settings
-- [ ] Test all endpoints
+### Categories Table
+- `category_id` (INT, PRIMARY KEY)
+- `user_id` (INT, FK to users)
+- `name` (VARCHAR)
+- `created_at` (TIMESTAMP)
+
+### Tasks Table
+- `task_id` (INT, PRIMARY KEY)
+- `user_id` (INT, FK to users)
+- `category_id` (INT, FK to categories)
+- `title` (VARCHAR)
+- `description` (TEXT)
+- `status` (VARCHAR)
+- `priority` (VARCHAR)
+- `due_date` (DATE)
+- `created_at` (TIMESTAMP)
 
 ---
 
-## 🧪 Testing the API
+## 🔌 API Endpoints
 
-### Using Postman/Thunder Client
-
-#### 1. Register User
-```json
-POST http://localhost:5000/api/auth/register
-Content-Type: application/json
-
-{
-  "name": "Rajina",
-  "email": "rajina@test.com",
-  "password": "password123"
-}
+### Auth
+```
+POST   /api/auth/register   - Register user
+POST   /api/auth/login      - Login user
+GET    /api/auth/profile    - Get profile (Protected)
 ```
 
-#### 2. Login
-```json
-POST http://localhost:5000/api/auth/login
-Content-Type: application/json
-
-{
-  "email": "rajina@test.com",
-  "password": "password123"
-}
+### Tasks
+```
+GET    /api/tasks           - Get all tasks (Protected)
+POST   /api/tasks           - Create task (Protected)
+PUT    /api/tasks/:id       - Update task (Protected)
+DELETE /api/tasks/:id       - Delete task (Protected)
 ```
 
-Copy the token from response!
-
-#### 3. Create Task
-```json
-POST http://localhost:5000/api/tasks
-Authorization: Bearer YOUR_TOKEN_HERE
-Content-Type: application/json
-
-{
-  "title": "Complete Sprint 1",
-  "description": "Finish all workshop milestones",
-  "status": "In Progress",
-  "due_date": "2026-02-10"
-}
+### Categories
 ```
+GET    /api/categories      - Get all categories (Protected)
+POST   /api/categories      - Create category (Protected)
+PUT    /api/categories/:id  - Update category (Protected)
+DELETE /api/categories/:id  - Delete category (Protected)
+```
+
+---
+
+## ✨ Features
+
+✅ User registration with name and mobile field  
+✅ JWT authentication with login  
+✅ Task CRUD operations  
+✅ Category management  
+✅ Protected routes  
+✅ Responsive UI  
+✅ Clean, light design  
+✅ Database migration script  
+✅ Seed data support  
+
+---
+
+## 📸 Frontend Pages
+
+- **Login** - Email, password, mobile field
+- **Register** - Name, email, password, mobile field
+- **Dashboard** - Task list, categories
+- **Create Task** - Form with title, description, category, priority, due date
+- **Task Card** - View, edit, delete tasks
+
+---
+
+## 🧪 Testing
+
+Use Postman or Thunder Client to test endpoints. See [backend/README.md](./backend/README.md) for detailed testing examples.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-task-track/
+Task_Track/
 ├── backend/
 │   ├── db/
-│   │   ├── connection.js      # PostgreSQL connection
-│   │   └── migrate.js         # Database migration
+│   │   ├── connection.js
+│   │   ├── migrate.js
+│   │   └── seed.js
 │   ├── middleware/
-│   │   └── auth.js            # JWT authentication
+│   │   └── auth.js
 │   ├── routes/
-│   │   ├── auth.js            # Auth endpoints
-│   │   ├── tasks.js           # Task endpoints
-│   │   └── categories.js      # Category endpoints
-│   ├── .env.example           # Environment variables template
-│   ├── .gitignore
-│   ├── package.json
-│   ├── server.js              # Express server
+│   │   ├── auth.js
+│   │   ├── tasks.js
+│   │   └── categories.js
+│   ├── .env
+│   ├── .env.example
+│   ├── server.js
 │   └── README.md
 │
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── App.js
-│   │   └── index.js
-│   ├── .env
-│   ├── package.json
-│   └── FRONTEND_SETUP.md
+├── src/
+│   ├── pages/
+│   │   ├── LoginPage.js
+│   │   ├── RegisterPage.js
+│   │   └── DashboardPage.js
+│   ├── components/
+│   │   ├── TaskForm.js
+│   │   ├── TaskList.js
+│   │   ├── TaskCard.js
+│   │   └── CategorySelector.js
+│   ├── services/
+│   │   └── api.js
+│   ├── App.js
+│   └── index.js
 │
-├── RENDER_DEPLOYMENT_GUIDE.md
+├── .env
+├── .env.example
+├── .env.production
+├── package.json
 └── README.md
 ```
 
 ---
 
-## ✨ Features Implemented
-
-### Sprint 1 (Backend - Weeks 2-3)
-- ✅ RESTful API with Express.js
-- ✅ PostgreSQL database integration
-- ✅ User authentication with JWT
-- ✅ Password hashing with bcryptjs
-- ✅ CRUD operations for tasks
-- ✅ CRUD operations for categories (GET all, GET by ID, POST, PUT, DELETE)
-- ✅ Protected routes with middleware
-- ✅ Input validation
-- ✅ Error handling
-- ✅ Deployed to Render
-
-### Sprint 2 (Frontend - Weeks 9-10)
-- ⏳ React component structure
-- ⏳ User registration/login forms
-- ⏳ Dashboard with task list
-- ⏳ Task creation/editing forms
-- ⏳ Category management
-- ⏳ State management
-- ⏳ API integration
-
-### Sprint 3 (Integration - Weeks 12-13)
-- ⏳ Full frontend-backend integration
-- ⏳ User authentication flow
-- ⏳ Protected routes
-- ⏳ Task filtering and search
-- ⏳ Responsive design
-- ⏳ Final deployment
 
 ---
 
-## 🎓 Course Learning Outcomes Achieved
-
-### CLO1: RESTful APIs
-✅ Architected and developed scalable RESTful API using Node.js and Express
-
-### CLO2: Data Persistence
-✅ Implemented PostgreSQL database with proper relationships and migrations
-
-### CLO3: Frontend Development
-⏳ Building component-based SPA with React (Sprint 2)
-
-### CLO4: Integration
-⏳ Integrating frontend with backend API (Sprint 3)
-
-### CLO5: Security
-✅ Implemented JWT authentication and bcrypt password hashing
-
-### CLO6: Deployment
-✅ Deployed to Render with PostgreSQL database and CI/CD workflow
-
----
-
-## 📸 Screenshots
-
-### Backend API Response
-![API Health Check](screenshots/api-health.png)
-
-### Database Schema
-![Database Tables](screenshots/database-schema.png)
-
-### Render Dashboard
-![Render Deployment](screenshots/render-dashboard.png)
-
----
-
-## 🐛 Known Issues / Future Improvements
-
-### Current Limitations
-- Frontend not yet implemented (Sprint 2)
-- No task filtering by status/category
-- No pagination for task lists
-- No search functionality
-
-### Future Enhancements
-- Add task due date reminders
-- Implement task priority levels
-- Add task comments/notes
-- Enable task sharing between users
-- Mobile app version
-- Dark mode theme
-- Email notifications
-
----
-
-## 📝 Development Log
-
-### Week 2 (Jan 15-19, 2026)
-- Set up project structure
-- Created Express server
-- Configured PostgreSQL connection
-
-### Week 3 (Jan 22-26, 2026)
-- Implemented authentication system
-- Built CRUD endpoints for tasks and categories
-- Added JWT middleware
-- Wrote database migrations
-
-### Week 4 (Jan 29 - Feb 2, 2026)
-- Deployed backend to Render
-- Set up PostgreSQL database on Render
-- Tested all API endpoints
-- Prepared for Sprint 1 review
-
----
-
-## 🤝 Contributing
-
-This is a student project for PROG2500. No external contributions are accepted.
-
----
-
-## 📄 License
-
-This project is created for educational purposes as part of PROG2500 course at Conestoga College.
-
----
-
-## 👤 Contact
-
-**Rajina**  
-Student Number: 9030748  
-Email: [your-email@conestogac.on.ca]
-
----
-
-## 🙏 Acknowledgments
-
-- Professor Johan Prinz for course instruction
-- Conestoga College PROG2500 course materials
-- Render documentation and support
-- PostgreSQL documentation
-
----
-
-## 📚 Resources Used
-
-- [Express.js Documentation](https://expressjs.com/)
-- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
-- [JWT.io](https://jwt.io/)
-- [Render Documentation](https://render.com/docs)
-- [React Documentation](https://react.dev/)
-- [MDN Web Docs](https://developer.mozilla.org/)
-
----
-
-**Last Updated**: February 7, 2026  
-**Sprint**: 1 (Backend)  
-**Status**: Deployed and Ready for Review ✅
->>>>>>> 45f2087abed5fe80a3bb3046af58fa995adab8db
+**Last Updated**: March 26, 2026  
