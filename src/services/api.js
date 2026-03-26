@@ -1,5 +1,5 @@
 // API Service for Task Track Backend
-const API_BASE = 'http://localhost:5000'; // Update this for production
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 // Auth endpoints
 export const registerUser = (email, password, name, mobile) =>
