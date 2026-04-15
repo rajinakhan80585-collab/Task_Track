@@ -22,6 +22,21 @@
   margin-bottom: 35px;
 }
 
+.logo-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 .auth-header h1 {
   color: #2c3e50;
   margin-bottom: 8px;
@@ -52,9 +67,23 @@
   text-transform: capitalize;
 }
 
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 16px;
+  color: #7f8c8d;
+  pointer-events: none;
+}
+
 .form-input {
   width: 100%;
-  padding: 11px 14px;
+  padding: 11px 14px 11px 40px;
   border: 2px solid #e8ecf1;
   border-radius: 6px;
   font-size: 14px;
@@ -72,6 +101,24 @@
 
 .form-input::placeholder {
   color: #bdc3c7;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #7f8c8d;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.toggle-password:hover {
+  color: #5B8DEE;
+  background: rgba(91, 141, 238, 0.1);
 }
 
 .submit-btn {
@@ -92,6 +139,7 @@
   background: #4A7FD9;
   box-shadow: 0 6px 12px rgba(91, 141, 238, 0.3);
   transform: translateY(-2px);
+  letter-spacing: 0.3px;
 }
 
 .submit-btn:active:not(:disabled) {
