@@ -47,7 +47,6 @@ export default function RegisterPage() {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <div className="logo-icon">📓</div>
           <h1>Create Account</h1>
           <p>Join Task Track to manage your tasks</p>
         </div>
@@ -58,7 +57,6 @@ export default function RegisterPage() {
           <div className="form-group">
             <label htmlFor="name">Full Name *</label>
             <div className="input-wrapper">
-              <span className="input-icon">👤</span>
               <input
                 id="name"
                 type="text"
@@ -74,7 +72,6 @@ export default function RegisterPage() {
           <div className="form-group">
             <label htmlFor="email">Email Address *</label>
             <div className="input-wrapper">
-              <span className="input-icon">✉️</span>
               <input
                 id="email"
                 type="email"
@@ -90,7 +87,6 @@ export default function RegisterPage() {
           <div className="form-group">
             <label htmlFor="mobile">Mobile Number *</label>
             <div className="input-wrapper">
-              <span className="input-icon">📱</span>
               <input
                 id="mobile"
                 type="tel"
@@ -106,7 +102,6 @@ export default function RegisterPage() {
           <div className="form-group">
             <label htmlFor="password">Password *</label>
             <div className="input-wrapper">
-              <span className="input-icon">🔒</span>
               <input
                 id="password"
                 type={showPassword ? 'text' : 'password'}
@@ -122,7 +117,7 @@ export default function RegisterPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 title={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? '👁️‍🗨️' : '👁️'}
+                {showPassword ? 'Hide' : 'Show'}
               </button>
             </div>
           </div>
@@ -146,7 +141,7 @@ export default function RegisterPage() {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 title={showConfirmPassword ? 'Hide password' : 'Show password'}
               >
-                {showConfirmPassword ? '👁️‍🗨️' : '👁️'}
+                {showConfirmPassword ? 'Hide' : 'Show'}
               </button>
             </div>
           </div>

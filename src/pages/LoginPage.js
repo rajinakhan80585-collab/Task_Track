@@ -37,7 +37,6 @@ export default function LoginPage() {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <div className="logo-icon">📋</div>
           <h1>Welcome Back</h1>
           <p>Sign in to your Task Track account</p>
         </div>
@@ -48,7 +47,6 @@ export default function LoginPage() {
           <div className="form-group">
             <label htmlFor="email">Email Address *</label>
             <div className="input-wrapper">
-              <span className="input-icon">✉️</span>
               <input
                 id="email"
                 className="form-input"
@@ -64,7 +62,6 @@ export default function LoginPage() {
           <div className="form-group">
             <label htmlFor="password">Password *</label>
             <div className="input-wrapper">
-              <span className="input-icon">🔒</span>
               <input
                 id="password"
                 className="form-input"
@@ -80,7 +77,7 @@ export default function LoginPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 title={showPassword ? 'Hide password' : 'Show password'}
               >
-                {showPassword ? '👁️‍🗨️' : '👁️'}
+                {showPassword ? 'Hide' : 'Show'}
               </button>
             </div>
           </div>
