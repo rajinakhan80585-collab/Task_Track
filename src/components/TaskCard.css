@@ -32,6 +32,13 @@
   word-break: break-word;
 }
 
+.task-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .priority-badge,
 .status-badge {
   padding: 4px 10px;

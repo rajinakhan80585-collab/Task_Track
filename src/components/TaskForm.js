@@ -2,22 +2,39 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { createTask, getCategories } from '../services/api';
 import './TaskForm.css';
 
+/**
+ * TaskForm Component
+ * Form for creating new tasks with title, description, category, status, priority, and due date
+ * Fetches available categories on mount and handles task creation
+ *
+ * @param {string} token - User authentication token
+ * @param {function} onTaskAdded - Callback fired when task is successfully created
+ */
 export default function TaskForm({ token, onTaskAdded }) {
+  // Form state
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [status, setStatus] = useState('Pending');
+  const [priority, setPriority] = useState('Medium');
+
+  // UI state
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [fetchingCategories, setFetchingCategories] = useState(true);
 
+  /**
+   * Fetch available categories from API
+   * Automatically sets first category as default if available
+   */
   const fetchCategories = useCallback(async () => {
     try {
       const result = await getCategories(token);
       if (result.error) {
-        console.error('Error fetching categories:', result.error);
+        // Silently handle category fetch errors to not block task form
+        setError('Could not load categories');
       } else if (result.categories && Array.isArray(result.categories)) {
         setCategories(result.categories);
         // Set first category as default if available
@@ -26,7 +43,8 @@ export default function TaskForm({ token, onTaskAdded }) {
         }
       }
     } catch (err) {
-      console.error('Failed to fetch categories');
+      // Network or parsing error - do not block form display
+      setError('Failed to load categories');
     } finally {
       setFetchingCategories(false);
     }
@@ -37,6 +55,10 @@ export default function TaskForm({ token, onTaskAdded }) {
     fetchCategories();
   }, [token, fetchCategories]);
 
+  /**
+   * Handle form submission
+   * Validates title, creates task via API, then clears form and notifies parent
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -54,7 +76,8 @@ export default function TaskForm({ token, onTaskAdded }) {
         description: description.trim(),
         category_id: categoryId || null,
         due_date: dueDate || null,
-        status: status
+        status: status,
+        priority: priority
       };
 
       const result = await createTask(token, taskData);
@@ -62,13 +85,14 @@ export default function TaskForm({ token, onTaskAdded }) {
       if (result.error) {
         setError(result.error);
       } else {
-        // Clear form
+        // Clear form on success
         setTitle('');
         setDescription('');
         setDueDate('');
         setStatus('Pending');
+        setPriority('Medium');
         
-        // Notify parent
+        // Notify parent component to refresh task list
         if (onTaskAdded) {
           onTaskAdded();
         }
@@ -145,6 +169,19 @@ export default function TaskForm({ token, onTaskAdded }) {
               <option value="Pending">Pending</option>
               <option value="In Progress">In Progress</option>
               <option value="Completed">Completed</option>
+            </select>
+          </div>
+
+          <div className="form-group half-width">
+            <label htmlFor="priority">Priority</label>
+            <select
+              id="priority"
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+            >
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </div>
         </div>
