@@ -3,14 +3,30 @@ import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../services/api';
 import './AuthPages.css';
 
-export default function LoginPage() {
+/**
+ * LoginPage Component
+ * Handles user authentication with email and password
+ * Stores JWT token and user info in localStorage on successful login
+ * Redirects to dashboard after login
+ *
+ * @param {function} addToast - Callback to show toast notifications
+ */
+export default function LoginPage({ addToast = () => {} }) {
+  // Form state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // UI state
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
+  /**
+   * Handle form submission
+   * Validates input and sends login request to backend
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -21,13 +37,17 @@ export default function LoginPage() {
       
       if (result.error) {
         setError(result.error);
+        addToast(result.error, 'error');
       } else if (result.token) {
         localStorage.setItem('token', result.token);
         localStorage.setItem('user', JSON.stringify(result.user));
+        addToast('Login successful!', 'success');
         navigate('/dashboard');
       }
     } catch (err) {
-      setError('Failed to connect to server. Make sure backend is running.');
+      const errorMsg = 'Failed to connect to server. Make sure backend is running.';
+      setError(errorMsg);
+      addToast(errorMsg, 'error');
     } finally {
       setLoading(false);
     }

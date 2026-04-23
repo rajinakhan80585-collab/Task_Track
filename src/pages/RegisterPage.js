@@ -3,24 +3,42 @@ import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../services/api';
 import './AuthPages.css';
 
-export default function RegisterPage() {
+/**
+ * RegisterPage Component
+ * Handles new user registration with email, password, name, and mobile
+ * Creates account and stores JWT token and user info in localStorage
+ * Redirects to dashboard after registration
+ *
+ * @param {function} addToast - Callback to show toast notifications
+ */
+export default function RegisterPage({ addToast = () => {} }) {
+  // Form state
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  // UI state
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const navigate = useNavigate();
 
+  /**
+   * Handle form submission
+   * Validates password match and sends registration request to backend
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      const errorMsg = 'Passwords do not match';
+      setError(errorMsg);
+      addToast(errorMsg, 'error');
       return;
     }
 
@@ -31,13 +49,17 @@ export default function RegisterPage() {
       
       if (result.error) {
         setError(result.error);
+        addToast(result.error, 'error');
       } else if (result.token) {
         localStorage.setItem('token', result.token);
         localStorage.setItem('user', JSON.stringify(result.user));
+        addToast('Account created successfully!', 'success');
         navigate('/dashboard');
       }
     } catch (err) {
-      setError('Failed to connect to server. Make sure backend is running.');
+      const errorMsg = 'Failed to connect to server. Make sure backend is running.';
+      setError(errorMsg);
+      addToast(errorMsg, 'error');
     } finally {
       setLoading(false);
     }
